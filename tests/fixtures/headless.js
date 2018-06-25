@@ -10,7 +10,7 @@ function headless (benv, binding) {
 
   function init (opts, callback) {
     var localStorage = opts.localStorage || './localstorage';
-    var htmlFile = opts.htmlFile || __dirname + '/../../static/index.html';
+    var htmlFile = opts.htmlFile || __dirname + '/../../views/index.html';
     var serverSettings = opts.serverSettings || require('./default-server-settings');
     var someData = opts.mockAjax || { };
     benv.setup(function() {
@@ -24,7 +24,7 @@ function headless (benv, binding) {
       //self.$ = require('jquery');
       //self.$.localStorage = require(localStorage);
 
-      self.$.fn.tipsy = function mockTipsy ( ) { };
+      self.$.fn.tooltip = function mockTooltip ( ) { };
 
       var indexHtml = read(htmlFile, 'utf8');
       self.$('body').html(indexHtml);
@@ -37,7 +37,7 @@ function headless (benv, binding) {
         self.$.plot = function mockPlot () {
         };
 
-        self.$.fn.tipsy = function mockTipsy ( ) { };
+        self.$.fn.tooltip = function mockTooltip ( ) { };
 
         self.$.fn.dialog = function mockDialog (opts) {
           function maybeCall (name, obj) {
@@ -172,4 +172,3 @@ function headless (benv, binding) {
 }
 
 module.exports = headless;
-
